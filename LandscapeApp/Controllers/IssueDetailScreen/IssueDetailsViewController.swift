@@ -159,6 +159,7 @@ extension IssueDetailsViewController: MenuViewControllerDelegate {
 
 // MARK: - Issue Panel View Controller Delegate
 extension IssueDetailsViewController: IssuePanelViewControllerDelegate {
+
     func didTapBackButtonIssue() {
         menuVC.selectPreviousIssue()
     }
@@ -191,6 +192,9 @@ extension IssueDetailsViewController: IssuePanelViewControllerDelegate {
     }
     func didCopyEntry(indexPath: IndexPath, origin: IssueType, destination: IssueType) {
         menuVC.copyEntryToTab(indexPath: indexPath, origin: origin, destination: destination)
+    }
+    func didTapExportButtonIssue() {
+        print("go to approve")
     }
 }
 

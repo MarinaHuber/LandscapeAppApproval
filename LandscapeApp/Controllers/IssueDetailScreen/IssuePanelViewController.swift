@@ -22,6 +22,7 @@ protocol IssuePanelViewControllerDelegate: AnyObject {
     func replaceImage(with image: UIImage, photoIndex: IndexPath, noteIndex: IndexPath, for type: IssueType)
     func didDeleteImageFromEntry(photoIndex: IndexPath, noteIndex: IndexPath, for type: IssueType)
     func didCopyEntry(indexPath: IndexPath, origin: IssueType, destination: IssueType)
+    func didTapExportButtonIssue()
 }
 
 class IssuePanelViewController: UIViewController {
@@ -107,6 +108,7 @@ class IssuePanelViewController: UIViewController {
         submitTextButton.addTarget(self, action: #selector(didTapSubmitTextButton), for: .touchUpInside)
         submitTextButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapSubmitTextButton)))
         submitTextButton.imageView?.tintColor = .gray
+        exportButton.addTarget(self, action: #selector(didTapExportButton), for: .touchUpInside)
         
         textViewHeightConstraint = noteTextView.heightAnchor.constraint(lessThanOrEqualToConstant: 132)
         textViewHeightConstraint.isActive = true
@@ -316,6 +318,10 @@ class IssuePanelViewController: UIViewController {
                 present(ac, animated: true)
             }
         }
+    }
+
+    @objc private func didTapExportButton() {
+        delegate?.didTapExportButtonIssue()
     }
 }
     // MARK: - Table View Delegates
